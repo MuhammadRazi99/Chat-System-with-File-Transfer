@@ -25,7 +25,7 @@ public class Server {
                 //read from socket to ObjectInputStream object
                 FromClient = new ObjectInputStream(socket.getInputStream());
                 //convert ObjectInputStream object to String
-                message = (String) FromClient.readObject();
+                message =  FromClient.readObject().toString();
                 System.out.println("Message Received: " + message);
                 //create ObjectOutputStream object
                 ToClient = new ObjectOutputStream(socket.getOutputStream());
