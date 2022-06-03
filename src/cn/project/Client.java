@@ -3,19 +3,19 @@ package cn.project;
 import java.io.*;
 import java.net.*;
 
-class Client {
-	private String IP;
-	private String hostname;
-	private Socket socket=null;
-	private ObjectOutputStream ToServer = null;
-	private ObjectInputStream FromServer = null;
+public class Client {
+	private static String IP;
+	private static String hostname;
+	private static Socket socket=null;
+	private static ObjectOutputStream ToServer = null;
+	private static ObjectInputStream FromServer = null;
         
-        public void ConnectionEst() throws IOException{
+        public static void ConnectionEst() throws IOException{
             socket = new Socket(hostname, 9876);
         }
-	public void clientConn(String S) throws IOException, InterruptedException, ClassNotFoundException{
+	public static void clientConn(String S) throws IOException, InterruptedException, ClassNotFoundException{
 		IP = InetAddress.getLocalHost().getHostAddress();
-                System.out.println(S+"Client");
+                System.out.println(S);
 		hostname = InetAddress.getLocalHost().getHostName();
 			//establish socket connection to server
 			//write to socket using ObjectOutputStream

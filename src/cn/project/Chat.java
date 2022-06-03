@@ -21,6 +21,7 @@ public class Chat extends javax.swing.JFrame {
      */
     public Chat() throws IOException {
         initComponents();
+        Client.ConnectionEst();
     }
 
     /**
@@ -231,6 +232,15 @@ public void UpwardText(){
 //        TextMessage.setText("");
     String S = TextMessage.getText();
         TextMessage.setText("");
+        try {
+            Client.clientConn(S+"\n");
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
           
         
     }//GEN-LAST:event_sendIconMouseClicked

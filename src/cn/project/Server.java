@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 // Server class
-class Server {
+public class Server {
     private InetAddress ipaddress;
     private String hostname;
     private static ServerSocket server;
