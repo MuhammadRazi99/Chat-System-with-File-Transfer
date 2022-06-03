@@ -5,6 +5,10 @@
  */
 package cn.project;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author DELL
@@ -244,13 +248,21 @@ public class Home extends javax.swing.JFrame {
     private void ChatLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelTextMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new Chat().setVisible(true);
+        try {
+            new Chat().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ChatLabelTextMouseClicked
 
     private void ChatLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelIconMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new Chat().setVisible(true);
+        try {
+            new Chat().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ChatLabelIconMouseClicked
 
     /**

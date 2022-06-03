@@ -6,6 +6,9 @@
 package cn.project;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -13,11 +16,11 @@ import javax.swing.JLabel;
  * @author DELL
  */
 public class Chat extends javax.swing.JFrame {
-
+        static Client obj = new Client();
     /**
      * Creates new form Chat
      */
-    public Chat() {
+    public Chat() throws IOException {
         initComponents();
     }
 
@@ -73,7 +76,7 @@ public class Chat extends javax.swing.JFrame {
             }
         });
 
-        sendIcon.setIcon(new javax.swing.ImageIcon("D:\\Razi\\Java\\CN project\\src\\cn\\project\\send icon 1.png")); // NOI18N
+        sendIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/send icon 1.png"))); // NOI18N
         sendIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sendIconMouseClicked(evt);
@@ -94,7 +97,7 @@ public class Chat extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(496, Short.MAX_VALUE)
+                .addContainerGap(536, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sendIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,7 +116,7 @@ public class Chat extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 613, Short.MAX_VALUE)
         );
 
         Jtab.addTab("tab3", jPanel3);
@@ -128,7 +131,7 @@ public class Chat extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 613, Short.MAX_VALUE)
         );
 
         Jtab.addTab("tab4", jPanel4);
@@ -180,8 +183,8 @@ public class Chat extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BackTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ClientName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, 0)
-                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -223,11 +226,18 @@ public void UpwardText(){
 //        System.out.println(TextMessage.getLocation());
 //        System.out.println(TextMessage.getText());
 //        TextMessage.setText("");
-            JLabel label1=new JLabel();
-    label1.setText(TextMessage.getText());
-    label1.setLocation(6, 491);
-        System.out.println(TextMessage.getText());
+    String S = TextMessage.getText();
         TextMessage.setText("");
+            try {
+                obj.clientConn(S);
+            } catch (IOException ex) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }//GEN-LAST:event_sendIconMouseClicked
 
     private void TextMessageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextMessageKeyTyped
@@ -270,7 +280,12 @@ public void UpwardText(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Chat().setVisible(true);
+                try {
+                    new Chat().setVisible(true);
+                    Chat.obj.ConnectionEst();
+                } catch (IOException ex) {
+                    Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
