@@ -68,12 +68,15 @@ public class Chat extends javax.swing.JFrame {
         TextMessage.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         TextMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TextMessage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextMessageKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TextMessageKeyTyped(evt);
             }
         });
 
-        sendIcon.setIcon(new javax.swing.ImageIcon("D:\\Razi\\Java\\CN project\\src\\cn\\project\\send icon 1.png")); // NOI18N
+        sendIcon.setIcon(new javax.swing.ImageIcon("D:\\Razi\\Java\\Chat-System-with-File-Transfer\\src\\Images\\send icon 1.png")); // NOI18N
         sendIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sendIconMouseClicked(evt);
@@ -94,7 +97,7 @@ public class Chat extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(496, Short.MAX_VALUE)
+                .addContainerGap(567, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sendIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,7 +116,7 @@ public class Chat extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 644, Short.MAX_VALUE)
         );
 
         Jtab.addTab("tab3", jPanel3);
@@ -128,14 +131,14 @@ public class Chat extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 644, Short.MAX_VALUE)
         );
 
         Jtab.addTab("tab4", jPanel4);
 
         main.setViewportView(Jtab);
 
-        BackIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/back arrow.png"))); // NOI18N
+        BackIconLabel.setIcon(new javax.swing.ImageIcon("D:\\Razi\\Java\\Chat-System-with-File-Transfer\\src\\Images\\back arrow.png")); // NOI18N
         BackIconLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BackIconLabelMouseClicked(evt);
@@ -159,16 +162,16 @@ public class Chat extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BackIconLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BackTextLabel)
                 .addGap(208, 208, 208)
                 .addComponent(ClientName, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,9 +183,8 @@ public class Chat extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BackTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ClientName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, 0)
-                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE))
         );
 
         pack();
@@ -239,6 +241,15 @@ public void UpwardText(){
         TextMessage.setText("");
         }
     }//GEN-LAST:event_TextMessageKeyTyped
+
+    private void TextMessageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextMessageKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            new JLabel().setText(TextMessage.getText());
+        System.out.println(TextMessage.getText());
+        TextMessage.setText("");
+        }
+    }//GEN-LAST:event_TextMessageKeyPressed
 
     /**
      * @param args the command line arguments

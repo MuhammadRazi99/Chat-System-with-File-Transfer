@@ -113,7 +113,7 @@ public class Home extends javax.swing.JFrame {
 
         Side.setBackground(new java.awt.Color(200, 63, 38));
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/CNlogo.png"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CNlogo.png"))); // NOI18N
 
         HomeLabelText.setFont(new java.awt.Font("MV Boli", 1, 20)); // NOI18N
         HomeLabelText.setText("HOME");
@@ -141,18 +141,18 @@ public class Home extends javax.swing.JFrame {
         ContactsLabelText.setText("CONTACTS");
         ContactsLabelText.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        ChatLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/Chat icon.png"))); // NOI18N
+        ChatLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Chat icon.png"))); // NOI18N
         ChatLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ChatLabelIconMouseClicked(evt);
             }
         });
 
-        ChatRoomLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/chat room icon.png"))); // NOI18N
+        ChatRoomLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/chat room icon.png"))); // NOI18N
 
-        cantactsLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/contacts icon.png"))); // NOI18N
+        cantactsLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/contacts icon.png"))); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cn/project/home cn project.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home cn project.png"))); // NOI18N
 
         javax.swing.GroupLayout SideLayout = new javax.swing.GroupLayout(Side);
         Side.setLayout(SideLayout);
@@ -195,17 +195,16 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(SideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(HomeLabelText)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
-                        .addGroup(SideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ChatLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ChatLabelText))
+                        .addGap(61, 61, 61)
+                        .addGroup(SideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ChatLabelText)
+                            .addComponent(ChatLabelIcon))
                         .addGap(59, 59, 59)
                         .addComponent(ChatRoomLabelText)
                         .addGap(86, 86, 86)
                         .addComponent(ContactsLabelText)
                         .addContainerGap(73, Short.MAX_VALUE))
                     .addGroup(SideLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(ChatRoomLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62)
                         .addComponent(cantactsLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
