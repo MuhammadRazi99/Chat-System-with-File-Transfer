@@ -27,10 +27,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Component id="main" pref="0" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="BackIconLabel" min="-2" max="-2" attributes="0"/>
@@ -38,7 +34,11 @@
               <Component id="BackTextLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
               <Component id="ClientName" min="-2" pref="232" max="-2" attributes="0"/>
-              <EmptySpace pref="266" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="main" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,9 +55,14 @@
                       </Group>
                   </Group>
               </Group>
+<<<<<<< HEAD
               <EmptySpace max="-2" attributes="0"/>
               <Component id="main" pref="637" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+=======
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="main" pref="507" max="32767" attributes="0"/>
+>>>>>>> b2d056d107c0732b49e57801bccd0182d859e1ea
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,6 +73,8 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="5b" green="84" red="ee" type="rgb"/>
         </Property>
+        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+        <Property name="verticalScrollBarPolicy" type="int" value="21"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -112,24 +119,28 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="TextMessage" min="-2" pref="576" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                           <Component id="sendIcon" min="-2" pref="43" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
                           <EmptySpace pref="536" max="32767" attributes="0"/>
+=======
+                          <EmptySpace pref="410" max="32767" attributes="0"/>
+>>>>>>> b2d056d107c0732b49e57801bccd0182d859e1ea
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="sendIcon" min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="TextMessage" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="sendIcon" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -145,13 +156,18 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextMessageKeyPressed"/>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextMessageKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="sendIcon">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
                       <Image iconType="3" name="/cn/project/send icon 1.png"/>
+=======
+                      <Image iconType="2" name="D:\Razi\Java\Chat-System-with-File-Transfer\src\Images\send icon 1.png"/>
+>>>>>>> b2d056d107c0732b49e57801bccd0182d859e1ea
                     </Property>
                   </Properties>
                   <Events>
@@ -221,7 +237,7 @@
     <Component class="javax.swing.JLabel" name="BackIconLabel">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cn/project/back arrow.png"/>
+          <Image iconType="2" name="D:\Razi\Java\Chat-System-with-File-Transfer\src\Images\back arrow.png"/>
         </Property>
       </Properties>
       <Events>

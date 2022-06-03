@@ -228,10 +228,10 @@
                               <Component id="HomeLabelText" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ChatLabelIcon" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="ChatLabelText" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChatLabelIcon" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="ChatRoomLabelText" min="-2" max="-2" attributes="0"/>
@@ -254,7 +254,7 @@
         <Component class="javax.swing.JLabel" name="Logo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/cn/project/CNlogo.png"/>
+              <Image iconType="3" name="/Images/CNlogo.png"/>
             </Property>
           </Properties>
         </Component>
@@ -311,7 +311,7 @@
         <Component class="javax.swing.JLabel" name="ChatLabelIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/cn/project/Chat icon.png"/>
+              <Image iconType="3" name="/Images/Chat icon.png"/>
             </Property>
           </Properties>
           <Events>
@@ -321,21 +321,21 @@
         <Component class="javax.swing.JLabel" name="ChatRoomLabelIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/cn/project/chat room icon.png"/>
+              <Image iconType="3" name="/Images/chat room icon.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="cantactsLabelIcon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/cn/project/contacts icon.png"/>
+              <Image iconType="3" name="/Images/contacts icon.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/cn/project/home cn project.png"/>
+              <Image iconType="3" name="/Images/home cn project.png"/>
             </Property>
           </Properties>
         </Component>
