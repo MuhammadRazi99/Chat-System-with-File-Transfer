@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -9,3 +10,26 @@
         </group>
     </open-files>
 </project-private>
+=======
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Razi/Java/Chat-System-with-File-Transfer/src/cn/project/Chat.java</file>
+            <file>file:/D:/Razi/Java/Chat-System-with-File-Transfer/src/cn/project/Client.java</file>
+            <file>file:/D:/Razi/Java/Chat-System-with-File-Transfer/src/cn/project/Server.java</file>
+        </group>
+    </open-files>
+</project-private>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group/>
+    </open-files>
+</project-private>
+>>>>>>> f67f39810a9caf99bcb6dbf85ca90a7b3c8ea281
+>>>>>>> 77ba1f3cfbc493d47a5c43c998dc61963af88037

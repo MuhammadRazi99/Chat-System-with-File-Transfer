@@ -144,6 +144,11 @@ public class Home extends javax.swing.JFrame {
         ContactsLabelText.setFont(new java.awt.Font("MV Boli", 1, 20)); // NOI18N
         ContactsLabelText.setText("CONTACTS");
         ContactsLabelText.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ContactsLabelText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ContactsLabelTextMouseClicked(evt);
+            }
+        });
 
         ChatLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Chat icon.png"))); // NOI18N
         ChatLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,6 +268,12 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ChatLabelIconMouseClicked
+
+    private void ContactsLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContactsLabelTextMouseClicked
+        // TODO add your handling code here:
+      this.setVisible(false);
+      new contact().setVisible(true); 
+    }//GEN-LAST:event_ContactsLabelTextMouseClicked
 
     /**
      * @param args the command line arguments
