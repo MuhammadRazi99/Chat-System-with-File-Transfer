@@ -256,7 +256,11 @@ public class Home extends javax.swing.JFrame {
     private void ChatLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelTextMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new ChatRoom().setVisible(true);
+        try {
+            new Chat().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ChatLabelTextMouseClicked
 
     private void ChatLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelIconMouseClicked
@@ -278,11 +282,7 @@ public class Home extends javax.swing.JFrame {
     private void ChatRoomLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatRoomLabelIconMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        try {
-            new Chat().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ChatRoom().setVisible(true);
     }//GEN-LAST:event_ChatRoomLabelIconMouseClicked
 
     /**
