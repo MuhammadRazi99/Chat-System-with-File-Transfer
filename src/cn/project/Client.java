@@ -6,16 +6,13 @@ import java.net.*;
 public class Client {
 	private static String IP;
 	private static String hostname;
-	private static Socket socket;
+	private static Socket socket=null;
 	private static ObjectOutputStream ToServer = null;
 	private static ObjectInputStream FromServer = null;
 
 	public  static void clientConn(String S) throws IOException, InterruptedException, ClassNotFoundException{
 		IP = InetAddress.getLocalHost().getHostAddress();
 		hostname = InetAddress.getLocalHost().getHostName();
-		socket = null;
-		ToServer = null;
-		FromServer = null;
 			//establish socket connection to server
 			socket = new Socket(hostname, 9876);
 			//write to socket using ObjectOutputStream
