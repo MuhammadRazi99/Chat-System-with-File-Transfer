@@ -158,6 +158,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         ChatRoomLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/chat room icon.png"))); // NOI18N
+        ChatRoomLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChatRoomLabelIconMouseClicked(evt);
+            }
+        });
 
         cantactsLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/contacts icon.png"))); // NOI18N
 
@@ -212,7 +217,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(ChatRoomLabelText)
                         .addGap(86, 86, 86)
                         .addComponent(ContactsLabelText)
-                        .addContainerGap(73, Short.MAX_VALUE))
+                        .addContainerGap(75, Short.MAX_VALUE))
                     .addGroup(SideLayout.createSequentialGroup()
                         .addComponent(ChatRoomLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62)
@@ -236,9 +241,7 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Side, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(Side, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,17 +249,14 @@ public class Home extends javax.swing.JFrame {
 
     private void ChatRoomLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatRoomLabelTextMouseClicked
         // TODO add your handling code here:
-        
+     this.setVisible(false);
+     new ChatRoom().setVisible(true);   
     }//GEN-LAST:event_ChatRoomLabelTextMouseClicked
 
     private void ChatLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelTextMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        try {
-            new Chat().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ChatRoom().setVisible(true);
     }//GEN-LAST:event_ChatLabelTextMouseClicked
 
     private void ChatLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelIconMouseClicked
@@ -274,6 +274,16 @@ public class Home extends javax.swing.JFrame {
       this.setVisible(false);
       new contact().setVisible(true); 
     }//GEN-LAST:event_ContactsLabelTextMouseClicked
+
+    private void ChatRoomLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatRoomLabelIconMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        try {
+            new Chat().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ChatRoomLabelIconMouseClicked
 
     /**
      * @param args the command line arguments

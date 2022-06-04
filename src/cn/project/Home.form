@@ -41,10 +41,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="main" alignment="1" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="Side" max="-2" attributes="0"/>
-              </Group>
+              <Component id="Side" alignment="1" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -237,7 +234,7 @@
                           <Component id="ChatRoomLabelText" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                           <Component id="ContactsLabelText" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="73" max="32767" attributes="0"/>
+                          <EmptySpace pref="75" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="ChatRoomLabelIcon" min="-2" pref="60" max="-2" attributes="0"/>
@@ -327,6 +324,9 @@
               <Image iconType="3" name="/Images/chat room icon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ChatRoomLabelIconMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="cantactsLabelIcon">
           <Properties>
