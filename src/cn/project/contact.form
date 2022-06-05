@@ -72,9 +72,7 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="plusLabelIcon" min="-2" pref="41" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="plusLabelText2" min="-2" max="-2" attributes="0"/>
                               <Component id="plusLabelText" min="-2" max="-2" attributes="0"/>
@@ -105,14 +103,9 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" pref="27" max="-2" attributes="0"/>
                           <EmptySpace pref="118" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="plusLabelText" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="plusLabelText2" min="-2" pref="27" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="plusLabelIcon" alignment="1" min="-2" pref="49" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="plusLabelText" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="plusLabelText2" min="-2" pref="27" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -126,11 +119,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="backLabelIcon">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Razi\Java\Chat-System-with-File-Transfer\src\Images\back arrow.png"/>
-            </Property>
-          </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="backLabelIconMouseClicked"/>
           </Events>
@@ -166,17 +154,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="plusLabelText2MouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="plusLabelIcon">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Razi\Java\Chat-System-with-File-Transfer\src\Images\plus.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="plusLabelIconMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="plusLabelText">
