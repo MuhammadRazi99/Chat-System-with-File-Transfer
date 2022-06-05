@@ -17,7 +17,7 @@ public class Server {
         server = new ServerSocket(port);
         //keep listens indefinitely until receives 'exit' call or program terminates
         while(true){
-            System.out.println("Waiting for the client request");
+            // System.out.println("Waiting for the client request");
             String message;
             //read from socket to ObjectInputStream object
             try ( //creating socket and waiting for client connection
