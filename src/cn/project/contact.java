@@ -52,7 +52,6 @@ public class contact extends javax.swing.JFrame {
         Jlabel1 = new javax.swing.JLabel();
         BackTextLabel = new javax.swing.JLabel();
         plusLabelText2 = new javax.swing.JLabel();
-        plusLabelIcon = new javax.swing.JLabel();
         plusLabelText = new javax.swing.JLabel();
         Jlabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,7 +65,6 @@ public class contact extends javax.swing.JFrame {
 
         side.setBackground(new java.awt.Color(200, 63, 38));
 
-        backLabelIcon.setIcon(new javax.swing.ImageIcon("D:\\Razi\\Java\\Chat-System-with-File-Transfer\\src\\Images\\back arrow.png")); // NOI18N
         backLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backLabelIconMouseClicked(evt);
@@ -94,14 +92,6 @@ public class contact extends javax.swing.JFrame {
         plusLabelText2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plusLabelText2MouseClicked(evt);
-            }
-        });
-
-        plusLabelIcon.setIcon(new javax.swing.ImageIcon("D:\\Razi\\Java\\Chat-System-with-File-Transfer\\src\\Images\\plus.png")); // NOI18N
-        plusLabelIcon.setText("jLabel2");
-        plusLabelIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                plusLabelIconMouseClicked(evt);
             }
         });
 
@@ -156,9 +146,7 @@ public class contact extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(sideLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(plusLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(107, 107, 107)
                         .addGroup(sideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(plusLabelText2)
                             .addComponent(plusLabelText))))
@@ -182,12 +170,9 @@ public class contact extends javax.swing.JFrame {
                     .addGroup(sideLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                        .addGroup(sideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideLayout.createSequentialGroup()
-                                .addComponent(plusLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(plusLabelText2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(plusLabelIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(plusLabelText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(plusLabelText2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(130, 130, 130))
                     .addGroup(sideLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,19 +262,6 @@ public class contact extends javax.swing.JFrame {
         new Home().setVisible(true);
     }//GEN-LAST:event_backLabelIconMouseClicked
 
-    private void plusLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plusLabelIconMouseClicked
-        // TODO add your handling code here:
-        IP=IPtext.getText();
-        IPtext.setText("");
-        hostname=hostnametext.getText();
-        hostnametext.setText("");
-        if(!checkIPAddress(IP)){
-            IPtext.setText("Invalid IP Address");
-        }
-        System.out.println("IP="+IP);
-        System.out.println("Hostname="+hostname);
-    }//GEN-LAST:event_plusLabelIconMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -336,7 +308,6 @@ public class contact extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel main;
-    private javax.swing.JLabel plusLabelIcon;
     private javax.swing.JLabel plusLabelText;
     private javax.swing.JLabel plusLabelText2;
     private javax.swing.JPanel side;

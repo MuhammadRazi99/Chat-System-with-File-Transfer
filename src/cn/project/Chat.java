@@ -6,21 +6,52 @@
 package cn.project;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 
 /**
  *
  * @author DELL
  */
 public class Chat extends javax.swing.JFrame {
+
     /**
      * Creates new form Chat
      */
-    public Chat() throws IOException {
+    
+    private String IP;
+    private String hostname;
+    private Socket clientSocket;
+    private BufferedReader inFromClient;
+    private BufferedWriter outToServer;
+    String UserName;
+
+    public Chat() {
         initComponents();
+        try {
+            IP = InetAddress.getLocalHost().getHostAddress();
+            hostname = InetAddress.getLocalHost().getHostName();
+            clientSocket = new Socket(hostname, 6789);
+            outToServer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            inFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            UserName = hostname;
+            outToServer.write(UserName + '\n');
+            recieveMessage();
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            close(clientSocket, outToServer, inFromClient);
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            close(clientSocket, outToServer, inFromClient);
+        }
     }
 
     /**
@@ -31,6 +62,7 @@ public class Chat extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         BackIconLabel = new javax.swing.JLabel();
         BackTextLabel = new javax.swing.JLabel();
@@ -42,7 +74,8 @@ public class Chat extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
         SendFile = new javax.swing.JButton();
-        side = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CHAT");
@@ -87,44 +120,45 @@ public class Chat extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TextMessageKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextMessageKeyTyped(evt);
-            }
         });
 
-        textArea.setBackground(new java.awt.Color(200, 63, 38));
         textArea.setColumns(20);
         textArea.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        textArea.setForeground(new java.awt.Color(240, 240, 240));
         textArea.setRows(5);
+        textArea.setEnabled(false);
         jScrollPane1.setViewportView(textArea);
 
         SendFile.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         SendFile.setText("FILE");
+        SendFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(75, 75, 75)
                 .addComponent(TextMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SendFile, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(sendIcon)
                 .addGap(25, 25, 25))
             .addGroup(mainLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(75, 75, 75)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(sendIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SendFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -132,39 +166,29 @@ public class Chat extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
         );
 
-        side.setBackground(new java.awt.Color(200, 63, 38));
-
-        javax.swing.GroupLayout sideLayout = new javax.swing.GroupLayout(side);
-        side.setLayout(sideLayout);
-        sideLayout.setHorizontalGroup(
-            sideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 133, Short.MAX_VALUE)
-        );
-        sideLayout.setVerticalGroup(
-            sideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(200, 63, 38));
+        jPanel1.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BackIconLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BackTextLabel))
-                    .addComponent(side, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(BackIconLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackTextLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ClientName, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133)
                 .addComponent(newChat)
                 .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 131, Short.MAX_VALUE)
-                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,8 +206,8 @@ public class Chat extends javax.swing.JFrame {
                                     .addGap(3, 3, 3))))))
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(side, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)))
         );
 
         pack();
@@ -201,48 +225,78 @@ public class Chat extends javax.swing.JFrame {
         new Home().setVisible(true);
     }//GEN-LAST:event_BackTextLabelMouseClicked
 
-    private void TextMessageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextMessageKeyTyped
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_TextMessageKeyTyped
-
     private void sendIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendIconMouseClicked
         // TODO add your handling code here:
         //        new JLabel().setText(TextMessage.getText());
         //        System.out.println(TextMessage.getLocation());
         //        System.out.println(TextMessage.getText());
         //        TextMessage.setText("");
-        String s=textArea.getText();
-        textArea.setText(s+"You:\n"+TextMessage.getText()+"\n");
+        String msg = TextMessage.getText();
+        sendMessage(msg);
+        textArea.append("You: " + msg + "\n");
         TextMessage.setText("");
-        try {
-            Client.clientConn(s);
-        } catch (IOException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }//GEN-LAST:event_sendIconMouseClicked
 
     private void TextMessageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextMessageKeyPressed
         // TODO add your handling code here:
-if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            String s=textArea.getText();
-            textArea.setText(s+"You:\n"+TextMessage.getText()+"\n");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String msg = TextMessage.getText();
+            sendMessage(msg);
+            textArea.append("You: " + msg + "\n");
             TextMessage.setText("");
         }
-
     }//GEN-LAST:event_TextMessageKeyPressed
 
     private void newChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newChatActionPerformed
         // TODO add your handling code here:
-        JLabel j1 = new JLabel("Random");
-        j1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        side.add(j1);
+//        JLabel j1 = new JLabel("Random");
+//        j1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+//        side.add(j1);
+        this.setVisible(false);
+        new contact().setVisible(true);
     }//GEN-LAST:event_newChatActionPerformed
+
+    public void sendMessage(String msgToSend) {
+        try {
+            if (clientSocket.isConnected()) {
+                outToServer.write(UserName + ": " + msgToSend + "\n");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            close(clientSocket, outToServer, inFromClient);
+        }
+    }
+
+    public void recieveMessage() {
+        new Thread(() -> {
+            String msgRecieved;
+            while (clientSocket.isConnected()) {
+                try {
+                    msgRecieved = inFromClient.readLine();
+                    textArea.append(msgRecieved);
+                } catch (IOException ex) {
+                    Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+                    close(clientSocket, outToServer, inFromClient);
+                }
+            }
+        }).start();
+    }
+
+    private void close(Socket clientSocket, BufferedWriter outFromClient, BufferedReader inFromClient) {
+        try {
+            if (inFromClient != null) {
+                inFromClient.close();
+            }
+            if (outFromClient != null) {
+                outFromClient.close();
+            }
+            if (clientSocket != null) {
+                clientSocket.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -270,7 +324,7 @@ if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -292,11 +346,7 @@ try {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    new Chat().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new Chat().setVisible(true);
             }
         });
     }
@@ -307,11 +357,12 @@ try {
     private javax.swing.JLabel ClientName;
     private javax.swing.JButton SendFile;
     private javax.swing.JTextField TextMessage;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel main;
     private javax.swing.JButton newChat;
     private javax.swing.JLabel sendIcon;
-    private javax.swing.JPanel side;
     private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }

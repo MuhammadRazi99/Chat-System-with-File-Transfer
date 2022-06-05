@@ -1,55 +1,77 @@
-
 package cn.project;
-import java.io.*;
-import java.net.*;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Server class
 public class Server {
+
     private InetAddress ipaddress;
     private String hostname;
-    private static ServerSocket server;
-    private static int port = 9876;
-    private static ObjectInputStream FromClient;
-    private static ObjectOutputStream ToClient;
+    private ServerSocket serverSocket;
+    private final int port = 6789;
+//    private ObjectInputStream FromClient;
+//    private ObjectOutputStream ToClient;
 
-    public static void Connection() throws IOException, ClassNotFoundException{
-
-        server = new ServerSocket(port);
-        //keep listens indefinitely until receives 'exit' call or program terminates
-        while(true){
-            // System.out.println("Waiting for the client request");
-            String message;
-            //read from socket to ObjectInputStream object
-            try ( //creating socket and waiting for client connection
-                    Socket socket = server.accept()) {
-                //read from socket to ObjectInputStream object
-                FromClient = new ObjectInputStream(socket.getInputStream());
-                //convert ObjectInputStream object to String
-                message =  FromClient.readObject().toString();
-                System.out.println("Message Received: " + message);
-                //create ObjectOutputStream object
-                ToClient = new ObjectOutputStream(socket.getOutputStream());
-                //write object to Socket
-                ToClient.writeObject("Hi Client "+message);
-                //close resources
-                FromClient.close();
-                ToClient.close();
-            }
-            //terminate the server if client sends exit request
-            if(message.equalsIgnoreCase("exit")) break;
+    public Server() {
+        try {
+            serverSocket = new ServerSocket(port);
+            ServerConnection();
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Shutting down Socket server!!");
-        //close the ServerSocket object
-        server.close();
     }
-    public String getIP(){
+
+    private void ServerConnection() {
+
+        try {
+            while (!serverSocket.isClosed()) {
+//                String message;
+                Socket connectionSocket = serverSocket.accept();
+                ClientHandler clientHandler = new ClientHandler(connectionSocket);
+                Thread thread = new Thread(clientHandler);
+                thread.start();
+                System.out.println("Client: " + clientHandler.clientUserName + " has connected!");
+//            FromClient = new ObjectInputStream(socket.getInputStream());
+//            message = FromClient.readObject().toString();
+//            System.out.println("Message Received: " + message);
+//            ToClient = new ObjectOutputStream(socket.getOutputStream());
+//            ToClient.writeObject("Hi Client " + message);
+//            FromClient.close();
+//            ToClient.close();
+            }
+//        if (message.equalsIgnoreCase("exit")) {
+//            break;
+//        }
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            close();
+        }
+    }
+
+    private void close() {
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String getIP() {
         return String.valueOf(this.ipaddress);
     }
-    public String getHostName(){
+
+    public String getHostName() {
         return this.hostname;
     }
-    public static void main(String[] args) throws ClassNotFoundException, IOException {    
-        Server.Connection();
-    }
 
-    }
+//    public static void main(String[] args) throws ClassNotFoundException, IOException {
+//        Server.startServer();
+//    }
+}

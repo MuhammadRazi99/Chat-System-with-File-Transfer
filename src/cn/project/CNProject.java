@@ -16,6 +16,8 @@ public class CNProject {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+//        new Home().setVisible(true);
+        new Server();
     }
     
 }
