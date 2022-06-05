@@ -21,6 +21,7 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,34 +250,26 @@ public class Home extends javax.swing.JFrame {
 
     private void ChatRoomLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatRoomLabelTextMouseClicked
         // TODO add your handling code here:
-     this.setVisible(false);
-     new ChatRoom().setVisible(true);   
+        this.setVisible(false);
+        new ChatRoom().setVisible(true);
     }//GEN-LAST:event_ChatRoomLabelTextMouseClicked
 
     private void ChatLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelTextMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        try {
-            new Chat().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new Chat().setVisible(true);
     }//GEN-LAST:event_ChatLabelTextMouseClicked
 
     private void ChatLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatLabelIconMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        try {
-            new Chat().setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new Chat().setVisible(true);
     }//GEN-LAST:event_ChatLabelIconMouseClicked
 
     private void ContactsLabelTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContactsLabelTextMouseClicked
         // TODO add your handling code here:
-      this.setVisible(false);
-      new contact().setVisible(true); 
+        this.setVisible(false);
+        new contact().setVisible(true);
     }//GEN-LAST:event_ContactsLabelTextMouseClicked
 
     private void ChatRoomLabelIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatRoomLabelIconMouseClicked

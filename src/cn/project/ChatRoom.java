@@ -6,7 +6,14 @@
 package cn.project;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -20,8 +27,31 @@ public class ChatRoom extends javax.swing.JFrame {
     /**
      * Creates new form ChatRoom
      */
+    private String IP;
+    private String hostname;
+    private Socket clientSocket;
+    private BufferedReader inFromClient;
+    private BufferedWriter outToServer;
+    String UserName;
+
     public ChatRoom() {
         initComponents();
+        try {
+            IP = InetAddress.getLocalHost().getHostAddress();
+            hostname = InetAddress.getLocalHost().getHostName();
+            clientSocket = new Socket(hostname, 6789);
+            outToServer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            inFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            UserName = hostname;
+            recieveMessage();
+            outToServer.write(UserName + '\n');
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            close(clientSocket, outToServer, inFromClient);
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            close(clientSocket, outToServer, inFromClient);
+        }
     }
 
     /**
@@ -194,25 +224,27 @@ public class ChatRoom extends javax.swing.JFrame {
         //        System.out.println(TextMessage.getLocation());
         //        System.out.println(TextMessage.getText());
         //        TextMessage.setText("");
-        String s=textArea.getText();
-        textArea.setText(s+"You:\n"+TextMessage.getText()+"\n");
+        String msg = TextMessage.getText();
+        sendMessage(msg);
+        textArea.append("You: " + msg + "\n");
         TextMessage.setText("");
-        try {
-            Client.clientConn(s);
-        } catch (IOException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Client.ClientConnection(s);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_sendIconMouseClicked
 
     private void TextMessageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextMessageKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            String s=textArea.getText();
-            textArea.setText(s+"You:\n"+TextMessage.getText()+"\n");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String msg = TextMessage.getText();
+            sendMessage(msg);
+            textArea.append("You: " + msg + "\n");
             TextMessage.setText("");
         }
     }//GEN-LAST:event_TextMessageKeyPressed
@@ -236,10 +268,52 @@ public class ChatRoom extends javax.swing.JFrame {
 
     private void newRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRoomActionPerformed
         // TODO add your handling code here:
-        JLabel j1 = new JLabel("Random");
-        j1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        side.add(j1);        
+//        JLabel j1 = new JLabel("Random");
+//        j1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+//        side.add(j1);
     }//GEN-LAST:event_newRoomActionPerformed
+
+    public void sendMessage(String msgToSend) {
+        try {
+            if (clientSocket.isConnected()) {
+                outToServer.write(UserName + ": " + msgToSend + "\n");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            close(clientSocket, outToServer, inFromClient);
+        }
+    }
+
+    public void recieveMessage() {
+        new Thread(() -> {
+            String msgRecieved;
+            while (clientSocket.isConnected()) {
+                try {
+                    msgRecieved = inFromClient.readLine();
+                    textArea.append(msgRecieved);
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatRoom.class.getName()).log(Level.SEVERE, null, ex);
+                    close(clientSocket, outToServer, inFromClient);
+                }
+            }
+        }).start();
+    }
+
+    private void close(Socket clientSocket, BufferedWriter outFromClient, BufferedReader inFromClient) {
+        try {
+            if (inFromClient != null) {
+                inFromClient.close();
+            }
+            if (outFromClient != null) {
+                outFromClient.close();
+            }
+            if (clientSocket != null) {
+                clientSocket.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void main(String[] args) {
         try {
