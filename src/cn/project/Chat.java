@@ -6,9 +6,11 @@
 package cn.project;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 /**
@@ -101,6 +103,11 @@ public class Chat extends javax.swing.JFrame {
 
         SendFile.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         SendFile.setText("FILE");
+        SendFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendFileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
@@ -243,6 +250,24 @@ if(evt.getKeyCode()==KeyEvent.VK_ENTER){
         j1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         side.add(j1);
     }//GEN-LAST:event_newChatActionPerformed
+
+    private void SendFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendFileActionPerformed
+        // TODO add your handling code here:
+        File fileToSend=null;
+        JFileChooser fileChooser=new JFileChooser();
+        fileChooser.setDialogTitle("Choose a file to send:");
+        if (fileChooser.showOpenDialog(null)==fileChooser.APPROVE_OPTION){
+             fileToSend=fileChooser.getSelectedFile();
+            TextMessage.setText("File you want to send="+fileToSend.getName());
+            FileTransferClient FTClient=new FileTransferClient();
+            try {
+                FTClient.SendFile(fileToSend);
+            } catch (IOException ex) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_SendFileActionPerformed
 
     /**
      * @param args the command line arguments
