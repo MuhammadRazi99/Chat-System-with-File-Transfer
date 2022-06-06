@@ -59,7 +59,7 @@ public class contact extends javax.swing.JFrame {
         return true;
     }
 
-    public void showContacts() {
+    private void showContacts() {
         try {
             stmt = conn.prepareStatement("select * from Contacts");
             ResultSet rs = stmt.executeQuery();

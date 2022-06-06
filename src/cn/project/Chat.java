@@ -14,8 +14,14 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +43,7 @@ public class Chat extends javax.swing.JFrame {
     public Chat() {
         initComponents();
         try {
+            showContacts();
             IP = InetAddress.getLocalHost().getHostAddress();
             hostname = InetAddress.getLocalHost().getHostName();
             clientSocket = new Socket(hostname, 6789);
@@ -53,6 +60,24 @@ public class Chat extends javax.swing.JFrame {
             close(clientSocket, outToServer, inFromClient);
         }
     }
+    
+    private void showContacts() {
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-U3DPH2O:1433;databaseName=Chat-System-with-File-Transfer;encrypt=true;trustServerCertificate=true;");
+            PreparedStatement stmt = conn.prepareStatement("select hostname from Contacts");
+            ResultSet rs = stmt.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) ContactsTable.getModel();
+            String row[][] = new String[8][1];
+            int i = 0;
+            while (rs.next()) {
+                row[i++][0] = rs.getString("hostname");
+                model.addRow(row[i]);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(contact.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +87,6 @@ public class Chat extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         BackIconLabel = new javax.swing.JLabel();
         BackTextLabel = new javax.swing.JLabel();
@@ -76,6 +100,8 @@ public class Chat extends javax.swing.JFrame {
         SendFile = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ContactsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CHAT");
@@ -132,7 +158,7 @@ public class Chat extends javax.swing.JFrame {
         SendFile.setText("FILE");
         SendFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionPerformed(evt);
+                SendFileActionPerformed(evt);
             }
         });
 
@@ -142,16 +168,17 @@ public class Chat extends javax.swing.JFrame {
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(TextMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SendFile, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(sendIcon)
-                .addGap(25, 25, 25))
-            .addGroup(mainLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainLayout.createSequentialGroup()
+                        .addComponent(TextMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SendFile, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(sendIcon)
+                        .addGap(25, 25, 25))
+                    .addGroup(mainLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(82, Short.MAX_VALUE))))
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,6 +195,38 @@ public class Chat extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(200, 63, 38));
         jPanel1.setLayout(new java.awt.GridLayout(0, 1));
+
+        ContactsTable.setBackground(new java.awt.Color(200, 63, 38));
+        ContactsTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ContactsTable.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        ContactsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Contacts"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ContactsTable.setPreferredSize(new java.awt.Dimension(25, 0));
+        jScrollPane3.setViewportView(ContactsTable);
+
+        jPanel1.add(jScrollPane3);
+
         jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,11 +414,13 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JLabel BackIconLabel;
     private javax.swing.JLabel BackTextLabel;
     private javax.swing.JLabel ClientName;
+    private javax.swing.JTable ContactsTable;
     private javax.swing.JButton SendFile;
     private javax.swing.JTextField TextMessage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel main;
     private javax.swing.JButton newChat;
     private javax.swing.JLabel sendIcon;
